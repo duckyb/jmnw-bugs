@@ -7,8 +7,8 @@ on:
       - "**/*.kicad_pcb"
 
 name: Render Previews
-runs-on: ubuntu-latest
 jobs:
+  runs-on: ubuntu-latest
   make-pngs:
     strategy:
       matrix:
@@ -28,6 +28,7 @@ jobs:
 
   publish:
     needs: make-pngs
+    runs-on: ubuntu-latest
     steps:
       # UPDATE GALLERY
       - name: Update gallery
