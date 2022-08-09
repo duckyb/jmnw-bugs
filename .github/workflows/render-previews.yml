@@ -8,8 +8,8 @@ on:
 
 name: Render Previews
 jobs:
-  runs-on: ubuntu-latest
   make-pngs:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         name: [ant, beetle, flea, gnat, midge, mite, mosquito, wasp, yellowjacket]
