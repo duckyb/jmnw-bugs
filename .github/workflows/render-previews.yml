@@ -1,0 +1,72 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.kicad_pcb"
+
+name: Render Previews
+jobs:
+  pngs:
+    runs-on: ubuntu-latest
+    name: "Export as PNGs"
+    steps:
+      # CHECKOUT
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # PREVIEWS
+      - name: Ant
+        uses: ./.github/actions/export-pngs
+        with:
+          pcb_file: ./pcbs/ant.kicad_pcb
+          pngs_dir: ./gallery/ant
+      - name: Beetle
+        uses: ./.github/actions/export-pngs
+        with:
+          pcb_file: ./pcbs/beetle.kicad_pcb
+          pngs_dir: ./gallery/beetle
+      - name: Flea
+        uses: ./.github/actions/export-pngs
+        with:
+          pcb_file: '"./pcbs/flea.kicad_pcb"'
+          pngs_dir: ./gallery/flea
+      - name: Gnat
+        uses: ./.github/actions/export-pngs
+        with:
+          pcb_file: '"./pcbs/gnat.kicad_pcb"'
+          pngs_dir: ./gallery/gnat
+      - name: Midge
+        uses: ./.github/actions/export-pngs
+        with:
+          pcb_file: '"./pcbs/midge.kicad_pcb"'
+          pngs_dir: ./gallery/midge
+      - name: Mite
+        uses: ./.github/actions/export-pngs
+        with:
+          pcb_file: '"./psbs/mite.kicad_pcb"'
+          pngs_dir: ./gallery/mite
+      - name: Mosquito
+        uses: ./.github/actions/export-pngs
+        with:
+          pcb_file: '"./pcbs/mosquito.kicad_pcb"'
+          pngs_dir: ./gallery/mosquito
+      - name: Wasp
+        uses: ./.github/actions/export-pngs
+        with:
+          pcb_file: '"./pcbs/wasp.kicad_pcb"'
+          pngs_dir: ./gallery/wasp
+      - name: Yellowjacket
+        uses: ./.github/actions/export-pngs
+        with:
+          pcb_file: '"./pcbs/yellowjacket.kicad_pcb"'
+          pngs_dir: ./gallery/yellowjacket
+
+      # UPDATE GALLERY
+      - name: Update gallery
+        uses: stefanzweifel/git-auto-commit-action@v4.14.1
+        with:
+          commit_message: "Update gallery (automated)"
+          commit_user_name: GitHub Actions Bot
+          file_pattern: "**/*.png"
