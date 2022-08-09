@@ -10,7 +10,7 @@ name: Render Previews
 jobs:
   pngs:
     runs-on: ubuntu-latest
-    stragegy:
+    strategy:
       matrix:
         name: [ant, beetle, flea, gnat, midge, mite, mosquito, wasp, yellowjacket]
     name: "Export as PNGs"
