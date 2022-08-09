@@ -26,13 +26,13 @@ jobs:
           pcb_file: '"./pcbs/${{ matrix.name }}/${{ matrix.name }}.kicad_pcb"'
           pngs_dir: '"./images/${{ matrix.name }}"'
 
-  # publish:
-  #   needs: make-pngs
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     # CHECKOUT
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
+  publish:
+    needs: make-pngs
+    runs-on: ubuntu-latest
+    steps:
+      # CHECKOUT
+      - name: Checkout
+        uses: actions/checkout@v2
       # UPDATE GALLERY
       - name: Update gallery
         uses: stefanzweifel/git-auto-commit-action@v4.14.1
