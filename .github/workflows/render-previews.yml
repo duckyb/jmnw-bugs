@@ -30,6 +30,9 @@ jobs:
     needs: make-pngs
     runs-on: ubuntu-latest
     steps:
+      # CHECKOUT
+      - name: Checkout
+        uses: actions/checkout@v2
       # UPDATE GALLERY
       - name: Update gallery
         uses: stefanzweifel/git-auto-commit-action@v4.14.1
