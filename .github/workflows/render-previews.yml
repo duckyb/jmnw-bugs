@@ -26,19 +26,30 @@ jobs:
           pcb_file: '"./pcbs/${{ matrix.name }}/${{ matrix.name }}.kicad_pcb"'
           pngs_dir: '"./images/${{ matrix.name }}"'
 
-  publish:
-    needs: make-pngs
-    runs-on: ubuntu-latest
-    steps:
-      # CHECKOUT
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          clean: false
-      # UPDATE GALLERY
-      - name: Update gallery
+      # PULL CHANGES
+      - run: git pull
+
+      # PUBLISH
+      - name: Publish Images
         uses: stefanzweifel/git-auto-commit-action@v4.14.1
         with:
           commit_message: "Update gallery (automated)"
           commit_user_name: GitHub Actions Bot
           # file_pattern: "**/*.png"
+
+  # publish:
+  #   needs: make-pngs
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     # CHECKOUT
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #       with:
+  #         clean: false
+  #     # UPDATE GALLERY
+  #     - name: Update gallery
+  #       uses: stefanzweifel/git-auto-commit-action@v4.14.1
+  #       with:
+  #         commit_message: "Update gallery (automated)"
+  #         commit_user_name: GitHub Actions Bot
+  #         # file_pattern: "**/*.png"
