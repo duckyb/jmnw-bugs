@@ -7,9 +7,9 @@ on:
       - "**/*.kicad_pcb"
 
 name: Render Previews
+runs-on: ubuntu-latest
 jobs:
   make-pngs:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         name: [ant, beetle, flea, gnat, midge, mite, mosquito, wasp, yellowjacket]
@@ -28,11 +28,7 @@ jobs:
 
   publish:
     needs: make-pngs
-    runs-on: ubuntu-latest
     steps:
-      # CHECKOUT
-      - name: Checkout
-        uses: actions/checkout@v2
       # UPDATE GALLERY
       - name: Update gallery
         uses: stefanzweifel/git-auto-commit-action@v4.14.1
