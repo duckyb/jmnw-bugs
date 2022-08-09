@@ -10,6 +10,9 @@ name: Render Previews
 jobs:
   pngs:
     runs-on: ubuntu-latest
+    stragegy:
+      matrix:
+        name: [ant, beetle, flea, gnat, midge, mite, mosquito, wasp, yellowjacket]
     name: "Export as PNGs"
     steps:
       # CHECKOUT
@@ -17,51 +20,11 @@ jobs:
         uses: actions/checkout@v2
 
       # PREVIEWS
-      - name: Ant
+      - name: Make preview of ${{ matrix.name }}
         uses: ./.github/actions/export-pngs
         with:
-          pcb_file: '"./pcbs/ant/ant.kicad_pcb"'
-          pngs_dir: ./images/ant
-      - name: Beetle
-        uses: ./.github/actions/export-pngs
-        with:
-          pcb_file: '"./pcbs/beetle/beetle.kicad_pcb"'
-          pngs_dir: ./images/beetle
-      - name: Flea
-        uses: ./.github/actions/export-pngs
-        with:
-          pcb_file: '"./pcbs/flea/flea.kicad_pcb"'
-          pngs_dir: ./images/flea
-      - name: Gnat
-        uses: ./.github/actions/export-pngs
-        with:
-          pcb_file: '"./pcbs/gnat/gnat.kicad_pcb"'
-          pngs_dir: ./images/gnat
-      - name: Midge
-        uses: ./.github/actions/export-pngs
-        with:
-          pcb_file: '"./pcbs/midge/midge.kicad_pcb"'
-          pngs_dir: ./images/midge
-      - name: Mite
-        uses: ./.github/actions/export-pngs
-        with:
-          pcb_file: '"./pcbs/mite/mite.kicad_pcb"'
-          pngs_dir: ./images/mite
-      - name: Mosquito
-        uses: ./.github/actions/export-pngs
-        with:
-          pcb_file: '"./pcbs/mosquito/mosquito.kicad_pcb"'
-          pngs_dir: ./images/mosquito
-      - name: Wasp
-        uses: ./.github/actions/export-pngs
-        with:
-          pcb_file: '"./pcbs/wasp/wasp.kicad_pcb"'
-          pngs_dir: ./images/wasp
-      - name: Yellowjacket
-        uses: ./.github/actions/export-pngs
-        with:
-          pcb_file: '"./pcbs/yellowjacket/yellowjacket.kicad_pcb"'
-          pngs_dir: ./images/
+          pcb_file: '"./pcbs/${{ matrix.name }}/${{ matrix.name }}.kicad_pcb"'
+          pngs_dir: ./images/ant/${{ matrix.name }}
 
       # UPDATE GALLERY
       - name: Update gallery
