@@ -32,7 +32,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.name }} images
+          name: ${{ matrix.name }}
           path: images/${{ matrix.name }}
 
       # # PULL CHANGES
