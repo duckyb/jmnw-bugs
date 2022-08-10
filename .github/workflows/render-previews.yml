@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.name }} images
-          path: '"./images/${{ matrix.name }}"'
+          path: '"images/${{ matrix.name }}"'
 
       # # PULL CHANGES
       # - run: git pull
@@ -55,6 +55,7 @@ jobs:
         with:
           clean: false
       # DOWNLOAD ARTIFACTS
+      - name: Download artifacts
       - uses: actions/download-artifact@v3
         with:
           path: images/
