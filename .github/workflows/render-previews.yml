@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.name }} images
-          path: '"images/${{ matrix.name }}"'
+          path: $GITHUB_WORKSPACE/'"images/${{ matrix.name }}"'
 
       # # PULL CHANGES
       # - run: git pull
