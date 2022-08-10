@@ -28,6 +28,13 @@ jobs:
           pcb_file: '"./pcbs/${{ matrix.name }}/${{ matrix.name }}.kicad_pcb"'
           pngs_dir: '"./images/${{ matrix.name }}"'
 
+      # UPLOAD ARTIFACTS
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.name }} images
+          path: '"./images/${{ matrix.name }}"'
+
       # # PULL CHANGES
       # - run: git pull
 
@@ -47,6 +54,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           clean: false
+      # DOWNLOAD ARTIFACTS
+      - uses: actions/download-artifact@v3
+        with:
+          path: images/
       # UPDATE GALLERY
       - name: Update gallery
         uses: stefanzweifel/git-auto-commit-action@v4.14.1
